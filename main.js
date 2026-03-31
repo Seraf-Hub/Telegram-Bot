@@ -3,9 +3,9 @@ const fs = require("fs");
 const products = require("./products");
 
 // 🔑 CONFIG
-const telegramToken = "8582432543:AAGml7IvYfipn-Y-XZM1KwHqSyRsWwq-T0E";
-const chatId = "-1003740796674";
-const affiliateTag = "rosadealscasa-21";
+const telegramToken = process.env.TELEGRAM_TOKEN;
+const chatId = process.env.CHAT_ID;
+const affiliateTag = process.env.AFFILIATE_TAG;
 
 // 📂 file memoria
 const SENT_FILE = "sent.json";
@@ -107,3 +107,13 @@ setInterval(sendProduct, 3600000);
 
 // 🚀 invio iniziale
 sendProduct();
+
+// 🌐 mini server per Render
+const http = require("http");
+
+http.createServer((req, res) => {
+  res.write("Bot attivo");
+  res.end();
+}).listen(3000, () => {
+  console.log("🌐 Server attivo sulla porta 3000");
+});
